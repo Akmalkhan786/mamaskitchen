@@ -18,7 +18,8 @@ class ItemController extends Controller
     public function index()
     {
         //
-        $items = Item::orderBy('id', 'desc')->get();
+//        $items = Item::orderBy('id', 'desc')->get();
+        $items = Item::paginate(10);
         return view('admin.item.index', compact('items'));
     }
 
@@ -92,6 +93,9 @@ class ItemController extends Controller
     public function edit($id)
     {
         //
+        $item = Item::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.item.edit', compact('item', 'categories'));
     }
 
     /**
@@ -104,6 +108,34 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'name' => 'required',
+            'category_id' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png'
+        ]);
+        $image = $request->file('image');
+        $slug = str_slug($request->file('name'));
+        $item = Item::findOrFail($id);
+        if (isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $slug .'-'. $currentDate .'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+            if (!file_exists('uploads/item')){
+                mkdir('uploads/item', 0777, true);
+            }
+            unlink('uploads/item/'. $item->image);
+            $image->move('uploads/item', $imageName);
+        } else{
+            $imageName = $item->image;
+        }
+        $item->name = $request->input('name');
+        $item->category_id = $request->input('category_id');
+        $item->description = $request->input('description');
+        $item->price = $request->input('price');
+        $item->image = $imageName;
+        $item->save();
+        return redirect()->route('item.index')->with('success', 'Item Updated');
     }
 
     /**
@@ -115,5 +147,9 @@ class ItemController extends Controller
     public function destroy($id)
     {
         //
+        $item = Item::findOrFail($id);
+        unlink('uploads/item/'. $item->image);
+        $item->delete();
+        return redirect()->back()->with('success', 'Item Deleted');
     }
 }

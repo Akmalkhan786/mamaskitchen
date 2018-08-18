@@ -889,3 +889,7 @@ footer a:hover
 		padding: 10px;
 	}
 }
+
+.overflow-custom{
+	overflow-x: hidden !important;
+}

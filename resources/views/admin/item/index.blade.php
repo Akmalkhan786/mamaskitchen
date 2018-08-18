@@ -17,7 +17,7 @@
                             <h4 class="card-title ">All Items</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive overflow-custom">
                                 <table class="table table-striped table-bordered">
                                     <thead class="text-primary">
                                     <th>#</th>
@@ -35,7 +35,7 @@
                                             <tr>
                                                 <td>{{$item->id}}</td>
                                                 <td>{{$item->name}}</td>
-                                                <td><img height="50" src="/uploads/item/{{$item->image}}"></td>
+                                                <td><img height="50" width="50" src="/uploads/item/{{$item->image}}"></td>
                                                 <td>{{$item->description}}</td>
                                                 <td>{{$item->category ? $item->category->name : 'Uncategorized'}}</td>
                                                 <td>{{$item->price}}</td>
@@ -57,6 +57,11 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="row">
+                                    <div class="col-sm-offset-4">
+                                        {{$items->render()}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -9,9 +9,6 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 my-5">
-                    <img src="/uploads/slider/{{$slider->image}}" class="img-fluid rounded img-thumbnail">
-                </div>
                 <div class="col-md-8">
                     @include('inc.messages')
                     <div class="card">
@@ -51,6 +48,9 @@
                             </form>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-4 my-5">
+                    <img src="/uploads/slider/{{$slider->image}}" class="img-fluid rounded img-thumbnail">
                 </div>
             </div>
         </div>

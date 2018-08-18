@@ -17,7 +17,7 @@ class SliderController extends Controller
     public function index()
     {
         //
-        $sliders = Slider::orderBy('id', 'desc')->get();
+        $sliders = Slider::paginate(10);
         return view('admin.slider.index', compact('sliders'));
     }
 
@@ -114,6 +114,7 @@ class SliderController extends Controller
             if (!file_exists('uploads/slider')){
                 mkdir('uploads/slider', 0777, true);
             }
+            unlink('uploads/slider/'. $slider->image);
             $image->move('uploads/slider', $imageName);
         } else{
             $imageName = $slider->image;

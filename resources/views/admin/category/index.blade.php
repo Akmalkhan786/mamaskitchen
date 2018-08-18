@@ -17,7 +17,7 @@
                             <h4 class="card-title ">All Categories</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive overflow-custom">
                                 <table class="table table-striped table-bordered">
                                     <thead class="text-primary">
                                     <th>#</th>
@@ -51,6 +51,11 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="row">
+                                    <div class="col-sm-offset-4">
+                                        {{$categories->render()}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

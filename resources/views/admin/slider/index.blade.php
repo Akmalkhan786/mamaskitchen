@@ -17,7 +17,7 @@
                             <h4 class="card-title ">All Sliders</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive overflow-custom">
                                 <table class="table table-striped table-bordered">
                                     <thead class="text-primary">
                                     <th>#</th>
@@ -34,7 +34,7 @@
                                                 <td>{{$slider->id}}</td>
                                                 <td>{{$slider->title}}</td>
                                                 <td>{{$slider->sub_title}}</td>
-                                                <td><img height="50" src="/uploads/slider/{{$slider->image}}"></td>
+                                                <td><img height="50" width="50" src="/uploads/slider/{{$slider->image}}"></td>
                                                 <td>{{$slider->created_at ? $slider->created_at->diffForHumans() : 'No Date'}}</td>
                                                 <td>{{$slider->updated_at ? $slider->updated_at->diffForHumans() : 'No Date'}}</td>
                                                 <td><a href="{{route('slider.edit', $slider->id)}}" class="btn btn-warning btn-fab-mini"><span class="fa fa-pencil"></span></a>
@@ -53,6 +53,11 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="row">
+                                    <div class="col-sm-offset-4">
+                                        {{$sliders->render()}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
