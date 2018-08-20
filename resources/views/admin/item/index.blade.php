@@ -51,7 +51,7 @@
                                                         document.getElementById('delete-form-{{$item->id}}').submit();
                                                     } else {
                                                         event.preventDefault();
-                                                            }"><i class="material-icons">delete</i> </button>
+                                                            }"><i class="fa fa-remove"></i> </button>
                                                 </td>
                                             </tr>
                                         @endforeach

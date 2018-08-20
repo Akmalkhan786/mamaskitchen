@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Category')
+@section('title', 'Reservation')
 
 @section('css')
 @endsection
@@ -11,10 +11,9 @@
             <div class="row">
                 <div class="col-md-12">
                     @include('inc.messages')
-                    <a href="{{ route('category.create') }}" class="btn btn-primary btn-lg pull-right mb-4"><span class="fa fa-plus"></span> Add Category</a>
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">All Categories</h4>
+                            <h4 class="card-title ">All Reservations</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive overflow-custom">
@@ -22,27 +21,41 @@
                                     <thead class="text-primary">
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Slug</th>
+                                    <th>Phone</th>
+                                    <th>E-mail</th>
+                                    <th>Time and Date</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
-                                        @foreach($categories as $category)
+                                        @foreach($reservations as $reservation)
                                             <tr>
-                                                <td>{{$category->id}}</td>
-                                                <td>{{$category->name}}</td>
-                                                <td>{{$category->slug}}</td>
-                                                <td>{{$category->created_at ? $category->created_at->diffForHumans() : 'No Date'}}</td>
-                                                <td>{{$category->updated_at ? $category->updated_at->diffForHumans() : 'No Date'}}</td>
-                                                <td><a href="{{route('category.edit', $category->id)}}" class="btn btn-warning btn-fab-mini"><span class="fa fa-pencil"></span></a>
-                                                    <form id="delete-form-{{$category->id}}" method="POST" action="{{ route('category.destroy', $category->id) }}" style="display: none">
+                                                <td>{{$reservation->id}}</td>
+                                                <td>{{$reservation->name}}</td>
+                                                <td>{{$reservation->phone}}</td>
+                                                <td>{{$reservation->email}}</td>
+                                                <td>{{$reservation->date_and_time}}</td>
+                                                <td>{{$reservation->message}}</td>
+                                                <td>
+                                                    @if($reservation->status == true)
+                                                        <span class="label label-info">Confirmed</span>
+                                                    @else
+                                                        <span class="label label-danger">Not Confirmed Yet</span>
+                                                    @endif
+                                                </td>
+                                                <td>{{$reservation->created_at ? $reservation->created_at->diffForHumans() : 'No Date'}}</td>
+                                                <td>{{$reservation->updated_at ? $reservation->updated_at->diffForHumans() : 'No Date'}}</td>
+                                                <td><a href="" class="btn btn-warning btn-fab-mini"><span class="fa fa-pencil"></span></a>
+                                                    <form id="delete-form-{{$reservation->id}}" method="POST" action="" style="display: none">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>
                                                     <button type="button" class="btn btn-danger btn-fab-mini" onclick="if (confirm('Are You Sure? To Delete This Record.')){
                                                         event.preventDefault();
-                                                        document.getElementById('delete-form-{{$category->id}}').submit();
+                                                        document.getElementById('delete-form-{{$reservation->id}}').submit();
                                                     } else {
                                                         event.preventDefault();
                                                             }"><i class="fa fa-remove"></i> </button>
@@ -53,7 +66,7 @@
                                 </table>
                                 <div class="row">
                                     <div class="col-sm-offset-4">
-                                        {{$categories->render()}}
+                                        {{$reservations->render()}}
                                     </div>
                                 </div>
                             </div>

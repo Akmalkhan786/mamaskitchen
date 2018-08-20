@@ -23,7 +23,8 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="#pablo">
-                        <i class="material-icons">dashboard</i>
+                        {{--<i class="material-icons">dashboard</i>--}}
+                        <i class="fa fa-dashboard"></i>
                         <p class="d-lg-none d-md-block">
                             Stats
                         </p>
@@ -47,7 +48,8 @@
                 {{--</li>--}}
                 <li class="nav-item">
                     <a class="nav-link" href="#pablo">
-                        <i class="material-icons">person</i>
+                        {{--<i class="material-icons">person</i>--}}
+                        <i class="fa fa-user"></i>
                         <p class="d-lg-none d-md-block">
                             Account
                         </p>
@@ -55,7 +57,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        <i class="material-icons">exit_to_app</i>
+                        {{--<i class="material-icons">exit_to_app</i>--}}
+                        <i class="fa fa-sign-out"></i>
                         <p class="hidden-lg hidden-md">Logout</p>
                     </a>
                     <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">

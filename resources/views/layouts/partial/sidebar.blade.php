@@ -13,32 +13,37 @@
         <ul class="nav">
             <li class="nav-item {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                    <i class="material-icons">dashboard</i>
+                    {{--<i class="material-icons">dashboard</i>--}}
+                    <i class="fa fa-dashboard"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('admin/slider*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('slider.index') }}">
-                    <i class="material-icons">slideshow</i>
+                    {{--<i class="material-icons">slideshow</i>--}}
+                    <i class="fa fa-sliders"></i>
                     <p>Sliders</p>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('admin/category*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('category.index') }}">
-                    <i class="material-icons">category</i>
+                    {{--<i class="material-icons">category</i>--}}
+                    <i class="fa fa-clipboard"></i>
                     <p>Categories</p>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('admin/item*') ? 'active' : '' }}">
                 <a class="nav-link " href="{{ route('item.index') }}">
-                    <i class="material-icons">library_books</i>
+                    {{--<i class="material-icons">library_books</i>--}}
+                    <i class="fa fa-book"></i>
                     <p>Items</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./icons.html">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>Icons</p>
+            <li class="nav-item {{ Request::is('admin/reservation*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('reservation.index') }}">
+                    {{--<i class="material-icons">bubble_chart</i>--}}
+                    <i class="fa fa-chevron-circle-up"></i>
+                    <p>Reservations</p>
                 </a>
             </li>
             <li class="nav-item ">
