@@ -46,24 +46,13 @@
                     <p>Reservations</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./map.html">
-                    <i class="material-icons">location_ons</i>
-                    <p>Maps</p>
+            <li class="nav-item {{ Request::is('admin/contact*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('contact.index')}}">
+                    {{--<i class="material-icons">location_ons</i>--}}
+                    <i class="fa fa-comments-o"></i>
+                    <p>Messages</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./notifications.html">
-                    <i class="material-icons">notifications</i>
-                    <p>Notifications</p>
-                </a>
-            </li>
-            <!-- <li class="nav-item active-pro ">
-                  <a class="nav-link" href="./upgrade.html">
-                      <i class="material-icons">unarchive</i>
-                      <p>Upgrade to PRO</p>
-                  </a>
-              </li> -->
         </ul>
     </div>
 </div>

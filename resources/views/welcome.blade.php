@@ -785,8 +785,8 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                 <div class="row">
-                    <form class="contact-form" method="post" action="contact.php">
-
+                    <form class="contact-form" method="post" action="{{route('contact.send')}}">
+                        @csrf
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <input  name="name" type="text" class="form-control" id="name" required="required" placeholder="  Name">
@@ -822,7 +822,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="copyright text-center">
                     <p>
-                        &copy; Copyright, 2015 <a href="#">Your Website Link.</a> Theme by <a href="http://themewagon.com/"  target="_blank">ThemeWagon</a>
+                        &copy; Copyright, 2018 <a href="#">Your Website Link.</a> Theme by <a href="http://themewagon.com/"  target="_blank">ThemeWagon</a>
                     </p>
                 </div>
             </div>

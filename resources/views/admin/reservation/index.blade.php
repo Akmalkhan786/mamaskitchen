@@ -41,15 +41,38 @@
                                                 <td>{{$reservation->message}}</td>
                                                 <td>
                                                     @if($reservation->status == true)
-                                                        <span class="label label-info">Confirmed</span>
+                                                        <span class="badge badge-info">Confirmed</span>
                                                     @else
-                                                        <span class="label label-danger">Not Confirmed Yet</span>
+                                                        <span class="badge badge-danger">Not Confirmed Yet</span>
                                                     @endif
                                                 </td>
                                                 <td>{{$reservation->created_at ? $reservation->created_at->diffForHumans() : 'No Date'}}</td>
                                                 <td>{{$reservation->updated_at ? $reservation->updated_at->diffForHumans() : 'No Date'}}</td>
-                                                <td><a href="" class="btn btn-warning btn-fab-mini"><span class="fa fa-pencil"></span></a>
-                                                    <form id="delete-form-{{$reservation->id}}" method="POST" action="" style="display: none">
+                                                <td>
+                                                    @if($reservation->status == false)
+                                                        <form id="status-form-{{$reservation->id}}" method="POST" action="{{route('reservation.status', $reservation->id)}}" style="display: none">
+                                                            @csrf
+                                                            <input type="hidden" name="status" value="0">
+                                                        </form>
+                                                        <button type="button" class="btn btn-info btn-fab-mini" onclick="if (confirm('Are you verify this request by phone?')){
+                                                                event.preventDefault();
+                                                                document.getElementById('status-form-{{$reservation->id}}').submit();
+                                                                } else {
+                                                                event.preventDefault();
+                                                                }"><i class="fa fa-check-circle"></i> </button>
+                                                    @else
+                                                        <form id="status-form-{{$reservation->id}}" method="POST" action="{{route('reservation.status', $reservation->id)}}" style="display: none">
+                                                            @csrf
+                                                            <input type="hidden" name="status" value="1">
+                                                        </form>
+                                                        <button type="button" class="btn btn-danger btn-fab-mini" onclick="if (confirm('Are you un-verify this request by phone?')){
+                                                                event.preventDefault();
+                                                                document.getElementById('status-form-{{$reservation->id}}').submit();
+                                                                } else {
+                                                                event.preventDefault();
+                                                                }"><i class="fa fa-undo"></i> </button>
+                                                    @endif
+                                                    <form id="delete-form-{{$reservation->id}}" method="POST" action="{{route('reservation.destroy', $reservation->id)}}" style="display: none">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>
@@ -79,4 +102,5 @@
 @endsection
 
 @section('scripts')
+{!! Toastr::message() !!}
 @endsection
